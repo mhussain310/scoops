@@ -1,0 +1,59 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+:root {
+  --color-white: rgb(245, 245, 247);
+  --color-red: rgb(208, 2, 27);
+  --color-medium-grey: rgb(63, 63, 66);
+}
+
+html {
+  font-size: 62.5%;
+  line-height: 1.35;
+  box-sizing: border-box;
+  /* height: 100%; */
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  overflow-x: hidden;
+  min-height: 100%;
+  background: linear-gradient(
+    to top left,
+    rgb(255, 164, 232),
+    rgb(253, 219, 131)
+  );
+}
+
+.main-container {
+  max-width: 1010px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-wrapper {
+  background: var(--color-white);
+  padding: 10px;
+  min-height: 100vh;
+  position: relative;
+}
+
+@media screen and (min-width: 540px) {
+  .content-wrapper {
+    padding: 20px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .main-container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}

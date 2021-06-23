@@ -1,0 +1,134 @@
+.preview {
+  display: flex;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 2px 5px 1px rgba(64, 60, 67, 0.16);
+  /* overflow: hidden; */
+  border-radius: 15px;
+  margin-top: 21px;
+  background: var(--color-white);
+  background: -webkit-linear-gradient(to right, #eaeaea, #f2f2f2);
+  background: linear-gradient(to right, #eaeaea, #f2f2f2);
+}
+
+.preview:hover .preview__image {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 350ms ease-out;
+}
+
+.preview:hover .preview__content-title {
+  cursor: pointer;
+  text-decoration: underline;
+  transition: transform 350ms ease-out;
+}
+
+.preview__image-container {
+  width: 100%;
+  padding: 15px 0 15px 10px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  overflow: hidden;
+}
+
+.preview__image-wrapper {
+  width: 100%;
+  padding-top: 56.25%;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 2px 5px 1px rgba(64, 60, 67, 0.16);
+}
+
+.preview__image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  transition: transform 350ms ease-out;
+}
+
+.preview__content {
+  color: var(--color-medium-grey);
+  width: 100%;
+  height: 100%;
+  padding: 10px 10px 10px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 15px;
+}
+
+.preview__content-wrapper {
+  /* order: 1; */
+  order: 0;
+}
+
+.preview__content-title {
+  padding-bottom: 10px;
+}
+
+.fadeup {
+  transform: translateY(50px);
+  opacity: 0;
+  transition-property: transform, opacity;
+  transition-duration: 600ms;
+  transition-timing-function: ease-out;
+}
+
+.in-view {
+  transform: none;
+  opacity: 1;
+}
+
+@media screen and (min-width: 540px) {
+  .preview-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .preview {
+    border-radius: 0;
+    flex-direction: column;
+    width: calc(50% - 21px + 10.5px);
+    margin-right: 21px;
+  }
+
+  .preview:nth-child(even) {
+    margin-right: 0;
+  }
+
+  .preview__image-container {
+    padding: 10px;
+    overflow: visible;
+  }
+
+  .preview__content {
+    padding: 15px;
+  }
+
+  .preview__content-wrapper {
+    /* order: 2; */
+    order: 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .preview {
+    width: calc(100% / 3 - 21px + 7px);
+    margin-right: 21px;
+  }
+
+  .preview:nth-child(even) {
+    margin-right: 21px;
+  }
+
+  .preview:nth-child(3n) {
+    margin-right: 0;
+  }
+
+  .preview__content-title {
+    font-size: 1.8rem;
+  }
+}

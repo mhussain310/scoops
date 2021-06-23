@@ -6,8 +6,9 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  transition: 150ms ease-in-out;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 150ms ease-in-out;
+  z-index: 2;
 }
 
 .overlay--active {
@@ -15,8 +16,16 @@
   visibility: visible;
 }
 
-@media screen and (min-width: 768px) {
+.overlay--modal {
+  z-index: 3;
+}
+
+@media screen and (min-width: 960px) {
   .overlay {
     display: none;
+  }
+
+  .overlay--modal {
+    display: initial;
   }
 }

@@ -1,0 +1,45 @@
+.notification {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100px;
+  width: 100%;
+  font-size: 1.6rem;
+  z-index: 4;
+  transition: all ease-in-out 0.3s;
+}
+
+.notification__wrapper {
+  color: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 14px 28px, rgba(0, 0, 0, 0.22) 0 10px 10px;
+  cursor: pointer;
+}
+
+.notification__wrapper--success {
+  background: rgb(83, 221, 125);
+}
+
+.notification__wrapper--error {
+  background: rgb(221, 83, 83);
+}
+
+.notification__icon {
+  fill: var(--color-white);
+}
+
+.notification__text {
+  margin-left: 10px;
+}
+
+.notification--hidden {
+  height: 0px !important;
+}

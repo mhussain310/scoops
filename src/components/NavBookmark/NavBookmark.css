@@ -1,0 +1,28 @@
+.nav__bookmarks {
+  text-decoration: none;
+  order: 3;
+  position: relative;
+}
+
+.nav__bookmarks:hover .nav__bookmarks-icon {
+  fill: var(--color-red);
+}
+
+.nav__bookmarks-icon {
+  fill: var(--color-medium-grey);
+  font-size: 2rem;
+  transition: fill 300ms ease-out;
+}
+
+.nav__bookmarks-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--color-red);
+  color: var(--color-white);
+  text-align: center;
+  line-height: 15px;
+}
