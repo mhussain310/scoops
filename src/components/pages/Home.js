@@ -49,6 +49,7 @@ const Home = ({
   //     <PreviewTopStory />
   //     <SectionTitle title="Latest News" />
   //     <PreviewArticle />
+  //     <Pagination />
   //   </>
   // );
 };

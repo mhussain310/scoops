@@ -1,14 +1,13 @@
 import React, { useRef } from "react";
 import { connect } from "react-redux";
 import { toggleBookmark, toggleShareModal } from "../../actions";
-import { removeSource, removeTLD, timeAgo } from "../../helper.js";
+import { timeAgo } from "../../helper.js";
 
+import ArticleImage from "../ArticleImage/ArticleImage";
 import PreviewActions from "../PreviewActions/PreviewActions";
 import PreviewInfo from "../PreviewInfo/PreviewInfo";
 
 import "./PreviewTopStory.css";
-
-import replacement from "../../img/replacement.jpg";
 
 const TopStory = ({
   topStory,
@@ -40,20 +39,19 @@ const TopStory = ({
 
   return (
     <article className="top-story">
-      <div className="top-story__image-container">
-        <div className="top-story__image-wrapper">
-          <img
-            className="top-story__image"
-            src={topStory.urlToImage ? topStory.urlToImage : replacement}
-            alt={topStory.title}
-          />
-          <span className="top-story__label">breaking</span>
-        </div>
-      </div>
+      <ArticleImage
+        src={topStory.urlToImage}
+        alt={topStory.title}
+        borderRadius
+        halfWidth
+        fullHeight
+      >
+        <span className="top-story__label">breaking</span>
+      </ArticleImage>
       <div className="top-story__content">
         <div className="top-story__content-wrapper">
           <h2 ref={titleRef} className="top-story__content-title">
-            {removeSource(topStory.title)}
+            {topStory.title}
           </h2>
           <p className="top-story__content-description">
             {topStory.description}
@@ -69,7 +67,7 @@ const TopStory = ({
             url={topStory.url}
           />
           <PreviewInfo
-            source={removeTLD(topStory.source.name)}
+            source={topStory.source}
             timeAgo={timeAgo(topStory.publishedAt)}
           />
         </div>
@@ -98,8 +96,17 @@ const TopStory = ({
     //         dolor sequi.
     //       </p>
     //     </div>
-    //     <PreviewActions handleBookmarkClick={handleBookmarkClick} />
-    //     <PreviewInfo source="BBC" timeAgo="2 hours ago" />
+    //     <div className="top-story__content-wrapper-2">
+    //       <PreviewActions
+    //         // bookmarked={bookmarks.some((bookmark) =>
+    //         //   bookmark.title.includes(topStory.title)
+    //         // )}
+    //         handleBookmarkClick={handleBookmarkClick}
+    //         handleShareClick={handleShareClick}
+    //         url="http://www.example.com"
+    //       />
+    //       <PreviewInfo source="BBC" timeAgo="2 hours ago" />
+    //     </div>
     //   </div>
     // </article>
   );

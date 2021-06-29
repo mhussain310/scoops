@@ -1,0 +1,21 @@
+.socials {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.socials--margin-modal {
+  margin: 15px 0 20px 0;
+}
+
+.socials--margin-article {
+  margin-top: 0;
+}
+
+.socials__item {
+  margin-right: 8px;
+}
+
+.socials__item:last-child {
+  margin-right: 0;
+}

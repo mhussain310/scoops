@@ -1,4 +1,5 @@
 const initialState = {
+  currentArticle: {},
   articles: [],
   totalResults: null,
   error: "",
@@ -32,6 +33,11 @@ const articlesReducer = (state = initialState, action) => {
         ...state,
         articles: [],
         loading: false,
+      };
+    case "CHANGE_CURRENT_ARTICLE":
+      return {
+        ...state,
+        currentArticle: action.payload,
       };
     default:
       return state;

@@ -5,6 +5,7 @@ import ShareModal from "./ShareModal/ShareModal";
 import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
 import Home from "./pages/Home";
+import Article from "./pages/Article";
 
 import "./App.css";
 
@@ -18,6 +19,7 @@ const App = () => {
           <ShareModal />
           <Switch>
             <Route exact path="/" component={Home}></Route>
+            <Route exact path="/article/:name" component={Article}></Route>
           </Switch>
         </div>
         <Footer />

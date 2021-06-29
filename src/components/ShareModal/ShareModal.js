@@ -1,16 +1,7 @@
 import React, { useRef } from "react";
 import { connect } from "react-redux";
 import { toggleShareModal, addToClipboard } from "../../actions";
-import {
-  FacebookShareButton,
-  TwitterShareButton,
-  WhatsappShareButton,
-  EmailShareButton,
-  FacebookIcon,
-  TwitterIcon,
-  WhatsappIcon,
-  EmailIcon,
-} from "react-share";
+import Socials from "../Socials/Socials";
 import Overlay from "../Overlay/Overlay";
 
 import "./ShareModal.css";
@@ -51,32 +42,12 @@ const ShareModal = ({
         </div>
         <div className="modal__content">
           <p className="modal__text">Share this link via</p>
-          <ul className="socials">
-            <li className="socials__item">
-              <FacebookShareButton url={article.url} quote={article.title}>
-                <FacebookIcon size={"40px"} round />
-              </FacebookShareButton>
-            </li>
-            <li className="socials__item">
-              <TwitterShareButton url={article.url} title={article.title}>
-                <TwitterIcon size={"40px"} round />
-              </TwitterShareButton>
-            </li>
-            <li className="socials__item">
-              <WhatsappShareButton url={article.url} title={article.title}>
-                <WhatsappIcon size={"40px"} round />
-              </WhatsappShareButton>
-            </li>
-            <li className="socials__item">
-              <EmailShareButton
-                url={article.url}
-                subject={article.title}
-                body={article.description}
-              >
-                <EmailIcon size={"40px"} round />
-              </EmailShareButton>
-            </li>
-          </ul>
+          <Socials
+            url={article.url}
+            title={article.title}
+            description={article.description}
+            buttonSize="40px"
+          />
           <p className="modal__text">Click to copy link</p>
           <div className="clipboard">
             <input

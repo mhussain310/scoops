@@ -1,5 +1,6 @@
 import news from "../api/news";
 import { RES_PER_PAGE } from "../config";
+import { removeSource, removeTLD } from "../helper";
 
 export const fetchArticles = () => async (dispatch, getState) => {
   dispatch({ type: "FETCH_ARTICLES_REQUEST" });
@@ -9,10 +10,27 @@ export const fetchArticles = () => async (dispatch, getState) => {
     const res = await news(
       `top-headlines?country=gb&pageSize=${RES_PER_PAGE}&page=${page}`
     );
-    dispatch({ type: "FETCH_ARTICLES_SUCCESS", payload: res });
+
+    const articles = res.articles.map((article) => {
+      const articleTitle = removeSource(article.title);
+
+      return {
+        ...article,
+        title: articleTitle,
+        source: removeTLD(article.source.name),
+      };
+    });
+
+    const data = { ...res, articles };
+
+    dispatch({ type: "FETCH_ARTICLES_SUCCESS", payload: data });
   } catch (error) {
     dispatch({ type: "FETCH_ARTICLES_FAILURE", payload: error.message });
   }
+};
+
+export const changeArticle = (article = {}) => {
+  return { type: "CHANGE_CURRENT_ARTICLE", payload: article };
 };
 
 export const removeArticles = () => {

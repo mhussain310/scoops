@@ -6,6 +6,11 @@ import "./PreviewArticle.css";
 
 import PreviewArticleCard from "../PreviewArticleCard/PreviewArticleCard";
 
+// import PreviewInfo from "../PreviewInfo/PreviewInfo";
+// import PreviewActions from "../PreviewActions/PreviewActions";
+
+// import replacement from "../../img/replacement.jpg";
+
 const PreviewArticle = ({ latestNews, page, totalResults }) => {
   const numPages = Math.ceil(totalResults / RES_PER_PAGE);
 
@@ -36,8 +41,17 @@ const PreviewArticle = ({ latestNews, page, totalResults }) => {
   //             celebrities and fans around the globe
   //           </h2>
   //         </div>
-  //         <PreviewActions />
-  //         <PreviewInfo source="Deadline" timeAgo="2 hours ago" />
+  //         <div className="preview__content-wrapper-2">
+  //           <PreviewActions
+  //             // bookmarked={bookmarks.some((bookmark) =>
+  //             //   bookmark.title.includes(article.title)
+  //             // )}
+  //             // handleBookmarkClick={handleBookmarkClick}
+  //             // handleShareClick={handleShareClick}
+  //             url="http://www.example.com"
+  //           />
+  //           <PreviewInfo source="Deadline" timeAgo="2 hours ago" />
+  //         </div>
   //       </div>
   //     </article>
   //   </div>

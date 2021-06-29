@@ -4,7 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0 0 10px 0;
+  padding: 10px 0 10px 0;
   order: 2;
 }
 
@@ -12,11 +12,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .preview__bookmark-wrapper:hover .preview__bookmark {
   fill: var(--color-red);
-  cursor: pointer;
 }
 
 .preview__bookmark--fill {
