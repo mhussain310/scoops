@@ -17,7 +17,8 @@ const PreviewArticle = ({ latestNews, page, totalResults }) => {
   const articles = latestNews.map((article, i, arr) => {
     const lastEl = arr.length - 1;
 
-    if (i === lastEl && lastEl % 12 === 0 && page !== numPages) return null;
+    if (lastEl !== 0 && i === lastEl && lastEl % 12 === 0 && page !== numPages)
+      return null;
     return <PreviewArticleCard key={article.title} article={article} />;
   });
 

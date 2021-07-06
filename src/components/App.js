@@ -6,8 +6,10 @@ import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
 import Home from "./pages/Home";
 import Article from "./pages/Article";
+import SavedArticles from "./pages/SavedArticles";
 
 import "./App.css";
+import Category from "./pages/Category";
 
 const App = () => {
   return (
@@ -19,6 +21,12 @@ const App = () => {
           <ShareModal />
           <Switch>
             <Route exact path="/" component={Home}></Route>
+            <Route
+              exact
+              path="/saved-articles"
+              component={SavedArticles}
+            ></Route>
+            <Route exact path="/:category" component={Category}></Route>
             <Route exact path="/article/:name" component={Article}></Route>
           </Switch>
         </div>

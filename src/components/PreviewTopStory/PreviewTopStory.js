@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { toggleBookmark, toggleShareModal } from "../../actions";
-import { timeAgo } from "../../helper.js";
+import { timeAgo, titleToAlphaNumeric } from "../../helper.js";
 
 import ArticleImage from "../ArticleImage/ArticleImage";
 import PreviewActions from "../PreviewActions/PreviewActions";
@@ -11,48 +12,47 @@ import "./PreviewTopStory.css";
 
 const TopStory = ({
   topStory,
-  topArticles,
+  label,
   bookmarks,
   toggleBookmark,
   toggleShareModal,
 }) => {
-  const titleRef = useRef();
-
-  const handleBookmarkClick = () => {
-    const bookmarkedTitle = titleRef.current.textContent;
-    const bookmarkedArticle = topArticles.find((article) =>
-      article.title.includes(bookmarkedTitle)
-    );
-
-    !bookmarks.includes(bookmarkedArticle)
-      ? toggleBookmark(bookmarkedArticle, true)
-      : toggleBookmark(bookmarkedArticle);
-  };
-
-  const handleShareClick = () => {
-    const title = titleRef.current.textContent;
-    const targetArticle = topArticles.find((article) =>
-      article.title.includes(title)
-    );
-    toggleShareModal(true, targetArticle);
-  };
-
   return (
     <article className="top-story">
-      <ArticleImage
-        src={topStory.urlToImage}
-        alt={topStory.title}
-        borderRadius
-        halfWidth
-        fullHeight
+      <Link
+        to={{
+          pathname: `/article/${titleToAlphaNumeric(
+            topStory.title,
+            topStory.publishedAt
+          )}`,
+          state: topStory,
+        }}
+        className="top-story__image-container"
       >
-        <span className="top-story__label">breaking</span>
-      </ArticleImage>
+        <ArticleImage
+          src={topStory.urlToImage}
+          alt={topStory.title}
+          borderRadius
+          // halfWidth
+          fullHeight
+        >
+          <span className="top-story__label">{label}</span>
+        </ArticleImage>
+      </Link>
       <div className="top-story__content">
         <div className="top-story__content-wrapper">
-          <h2 ref={titleRef} className="top-story__content-title">
-            {topStory.title}
-          </h2>
+          <Link
+            to={{
+              pathname: `/article/${titleToAlphaNumeric(
+                topStory.title,
+                topStory.publishedAt
+              )}`,
+              state: topStory,
+            }}
+            className="top-story__title-container"
+          >
+            <h2 className="top-story__title">{topStory.title}</h2>
+          </Link>
           <p className="top-story__content-description">
             {topStory.description}
           </p>
@@ -62,12 +62,12 @@ const TopStory = ({
             bookmarked={bookmarks.some((bookmark) =>
               bookmark.title.includes(topStory.title)
             )}
-            handleBookmarkClick={handleBookmarkClick}
-            handleShareClick={handleShareClick}
+            handleBookmarkClick={() => toggleBookmark(topStory)}
+            handleShareClick={() => toggleShareModal(true, topStory)}
             url={topStory.url}
           />
           <PreviewInfo
-            source={topStory.source}
+            source={topStory.source.name}
             timeAgo={timeAgo(topStory.publishedAt)}
           />
         </div>
@@ -112,9 +112,7 @@ const TopStory = ({
   );
 };
 
-const mapStateToProps = (state) => {
-  return { topArticles: state.articles.articles, bookmarks: state.bookmarks };
-};
+const mapStateToProps = (state) => ({ bookmarks: state.bookmarks });
 
 export default connect(mapStateToProps, { toggleBookmark, toggleShareModal })(
   TopStory

@@ -1,5 +1,3 @@
-import moment from "moment";
-
 export const timeout = function (s) {
   return new Promise(function (_, reject) {
     setTimeout(function () {
@@ -18,10 +16,6 @@ export const removeSource = (str) => {
     .filter((el) => el !== "");
 
   return arr.slice(0, -1).join(" - ");
-
-  // const arr = str.split(" - ");
-  // const newArr = [...new Set(arr)];
-  // return newArr.slice(0, -1).join(" - ");
 };
 
 export const removeTLD = (str) => {
@@ -35,13 +29,43 @@ export const removeChar = (str) => {
   return str.slice(0, index);
 };
 
-export const timeAgo = (date) => {
-  return moment(date).fromNow();
-};
-
 export const parseISOString = (str) => {
   const b = str.split(/\D+/);
   return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
+};
+
+export const timeAgo = (date) => {
+  const parsedDate = parseISOString(date);
+
+  let seconds = Math.floor((Date.now() - parsedDate) / 1000);
+  let unit = "second";
+  let direction = "ago";
+  if (seconds < 0) {
+    seconds = -seconds;
+    direction = "from now";
+  }
+  let value = seconds;
+  if (seconds >= 31536000) {
+    value = Math.floor(seconds / 31536000);
+    unit = "year";
+  } else if (seconds >= 2628000) {
+    value = Math.floor(seconds / 2628000);
+    unit = "month";
+  } else if (seconds >= 604800) {
+    value = Math.floor(seconds / 604800);
+    unit = "week";
+  } else if (seconds >= 86400) {
+    value = Math.floor(seconds / 86400);
+    unit = "day";
+  } else if (seconds >= 3600) {
+    value = Math.floor(seconds / 3600);
+    unit = "hour";
+  } else if (seconds >= 60) {
+    value = Math.floor(seconds / 60);
+    unit = "minute";
+  }
+  if (value !== 1) unit = unit + "s";
+  return value + " " + unit + " " + direction;
 };
 
 export const fmtDate = (date, options) => {
@@ -66,9 +90,13 @@ export const checkAuthor = (author, source) => {
 export const titleToAlphaNumeric = (title, date) => {
   const alphaTitle = title
     .split(" ")
-    .map((word) => word.toLowerCase().replace(/\W/g, ""))
+    .map((word) => word.toLowerCase().replace(/[^0-9a-z]/gi, ""))
+    .filter((word) => word !== "")
     .join("-");
 
   const timestamp = parseISOString(date).getTime();
   return `${alphaTitle}-${timestamp}`;
 };
+
+export const capitaliseFirstLetter = (str) =>
+  str.charAt(0).toUpperCase() + str.slice(1);

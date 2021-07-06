@@ -1,24 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
-import { changePage, fetchArticles, removeArticles } from "../../actions";
-import { RES_PER_PAGE } from "../../config";
+import { useParams } from "react-router-dom";
+import { changePage, fetchArticles } from "../../actions";
+import { CATEGORY_NAMES, RES_PER_PAGE } from "../../config";
 import Spinner from "../Spinner/Spinner";
 
 import "./Pagination.css";
 
-const Pagination = ({
-  page,
-  totalResults,
-  loading,
-  fetchArticles,
-  changePage,
-  // removeArticles,
-}) => {
+const Pagination = ({ articles, page, fetchArticles, changePage }) => {
+  const category = useParams().category || CATEGORY_NAMES[0];
+  const loading = articles[category].loading;
+  const totalResults = articles[category].totalResults;
   const numPages = Math.ceil(totalResults / RES_PER_PAGE);
 
   const handleClick = () => {
     changePage();
-    fetchArticles();
+    fetchArticles(category);
   };
 
   const conditionalRender = () => {
@@ -52,13 +49,11 @@ const Pagination = ({
 const mapStateToProps = ({ page, articles }) => {
   return {
     page,
-    totalResults: articles.totalResults,
-    loading: articles.loading,
+    articles,
   };
 };
 
 export default connect(mapStateToProps, {
   fetchArticles,
   changePage,
-  removeArticles,
 })(Pagination);

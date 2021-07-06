@@ -16,6 +16,11 @@
   stroke: var(--color-medium-grey);
 }
 
+.error__icon-bookmark {
+  font-size: 5rem;
+  fill: rgba(0, 0, 0, 0.6);
+}
+
 .error__msg {
   text-align: center;
   font-size: 1.6rem;

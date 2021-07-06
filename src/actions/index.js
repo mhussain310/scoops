@@ -1,33 +1,46 @@
 import news from "../api/news";
-import { RES_PER_PAGE } from "../config";
+import { CATEGORY_NAMES, RES_PER_PAGE } from "../config";
 import { removeSource, removeTLD } from "../helper";
 
-export const fetchArticles = () => async (dispatch, getState) => {
-  dispatch({ type: "FETCH_ARTICLES_REQUEST" });
-  try {
-    const { page } = getState();
-
-    const res = await news(
-      `top-headlines?country=gb&pageSize=${RES_PER_PAGE}&page=${page}`
-    );
-
-    const articles = res.articles.map((article) => {
-      const articleTitle = removeSource(article.title);
-
-      return {
-        ...article,
-        title: articleTitle,
-        source: removeTLD(article.source.name),
-      };
+export const fetchArticles =
+  (category = CATEGORY_NAMES[0]) =>
+  async (dispatch, getState) => {
+    const categoryType = category.toUpperCase();
+    dispatch({
+      type: categoryType,
+      payload: { subtype: "FETCH_ARTICLES_REQUEST" },
     });
+    try {
+      const { page } = getState();
 
-    const data = { ...res, articles };
+      const res = await news(
+        `top-headlines?country=gb&category=${category}&pageSize=${RES_PER_PAGE}&page=${page}`
+      );
 
-    dispatch({ type: "FETCH_ARTICLES_SUCCESS", payload: data });
-  } catch (error) {
-    dispatch({ type: "FETCH_ARTICLES_FAILURE", payload: error.message });
-  }
-};
+      const articles = res.articles.map((article) => {
+        return {
+          ...article,
+          title: removeSource(article.title),
+          source: {
+            ...article.source,
+            name: removeTLD(article.source.name),
+          },
+        };
+      });
+
+      const data = { ...res, articles };
+
+      dispatch({
+        type: categoryType,
+        payload: { subtype: "FETCH_ARTICLES_SUCCESS", data },
+      });
+    } catch (error) {
+      dispatch({
+        type: categoryType,
+        payload: { subtype: "FETCH_ARTICLES_FAILURE", error: error.message },
+      });
+    }
+  };
 
 export const changeArticle = (article = {}) => {
   return { type: "CHANGE_CURRENT_ARTICLE", payload: article };
@@ -37,17 +50,19 @@ export const removeArticles = () => {
   return { type: "REMOVE_ARTICLES" };
 };
 
-export const toggleBookmark =
-  (article, addBookmark = false) =>
-  (dispatch) => {
-    if (addBookmark) {
-      dispatch({ type: "ADD_BOOKMARK", payload: article });
-      dispatch(addNotification("Article saved!", "success"));
-    } else {
-      dispatch({ type: "DELETE_BOOKMARK", payload: article });
-      dispatch(removeNotification());
-    }
-  };
+export const toggleBookmark = (article) => (dispatch, getState) => {
+  const { bookmarks } = getState();
+
+  const checkBookmark = bookmarks.some((el) => el.title === article.title);
+
+  if (!checkBookmark) {
+    dispatch({ type: "ADD_BOOKMARK", payload: article });
+    dispatch(addNotification("Article saved!", "success"));
+  } else {
+    dispatch({ type: "DELETE_BOOKMARK", payload: article });
+    dispatch(removeNotification());
+  }
+};
 
 export const changePage =
   (pageNum = null) =>

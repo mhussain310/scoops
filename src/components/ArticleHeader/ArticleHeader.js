@@ -10,11 +10,6 @@ import Bookmark from "../Bookmark/Bookmark";
 import "./ArticleHeader.css";
 
 const ArticleHeader = ({ article, bookmarks, toggleBookmark }) => {
-  const handleBookmarkClick = () =>
-    !bookmarks.includes(article)
-      ? toggleBookmark(article, true)
-      : toggleBookmark(article);
-
   return (
     <header className="article-header">
       <h1 className="article-header__title">{article.title}</h1>
@@ -22,7 +17,7 @@ const ArticleHeader = ({ article, bookmarks, toggleBookmark }) => {
         <span className="article-header__author-by">
           {article.author ? "By" : "From"}
         </span>
-        <strong>{checkAuthor(article.author, article.source)}</strong>
+        <strong>{checkAuthor(article.author, article.source.name)}</strong>
       </p>
       <div className="article-header__date-container">
         <span className="article-header__date">
@@ -41,7 +36,7 @@ const ArticleHeader = ({ article, bookmarks, toggleBookmark }) => {
           bookmarked={bookmarks.some((bookmark) =>
             bookmark.title.includes(article.title)
           )}
-          handleClick={handleBookmarkClick}
+          handleClick={() => toggleBookmark(article)}
           bookmarkArticle
         />
       </div>

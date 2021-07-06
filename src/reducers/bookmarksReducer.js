@@ -3,7 +3,7 @@ const bookmarksReducer = (state = [], action) => {
     case "ADD_BOOKMARK":
       return [...state, action.payload];
     case "DELETE_BOOKMARK":
-      return state.filter((el) => el !== action.payload);
+      return state.filter((el) => el.title !== action.payload.title);
     default:
       return state;
   }
