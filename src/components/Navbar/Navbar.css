@@ -20,6 +20,13 @@
   font-family: "Luckiest Guy", cursive;
   font-size: 2rem;
   letter-spacing: 0.1rem;
+  display: flex;
+  align-items: center;
+}
+
+.nav__logo-glass {
+  fill: var(--color-medium-grey);
+  font-size: 4rem;
 }
 
 .nav__list {
@@ -55,7 +62,7 @@
 .nav__link {
   font-size: 1.6rem;
   display: block;
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--black-op60);
   padding: 15px 20px;
   text-decoration: none;
 }
@@ -80,7 +87,7 @@
 .hamburger.is-active .hamburger-inner,
 .hamburger.is-active .hamburger-inner::before,
 .hamburger.is-active .hamburger-inner::after {
-  background-color: rgb(112, 117, 122);
+  background-color: var(--grey-shade-2);
 }
 
 .hamburger-box {
@@ -101,7 +108,7 @@
 .hamburger-inner::after {
   width: 20px;
   height: 2.5px;
-  background-color: rgb(112, 117, 122);
+  background-color: var(--grey-shade-2);
   border-radius: 4px;
   position: absolute;
   transition-property: transform;
@@ -157,8 +164,6 @@
   }
 
   .nav {
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
     padding: 15px 35px 15px 35px;
   }
 

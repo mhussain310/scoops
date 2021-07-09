@@ -1,6 +1,6 @@
 class BaseState {
   articles = [];
-  totalResults = null;
+  totalResults = 0;
   error = "";
   loading = false;
 }
@@ -17,13 +17,14 @@ export const baseReducer = (state = new BaseState(), action) => {
       return {
         ...state,
         articles: [...state.articles, ...action.payload.data.articles],
-        totalResults: action.payload.totalResults,
+        totalResults: action.payload.data.totalResults,
         loading: false,
       };
     case "FETCH_ARTICLES_FAILURE":
       return {
         ...state,
         articles: [],
+        totalResults: 0,
         error: action.payload.error,
         loading: false,
       };
@@ -31,6 +32,7 @@ export const baseReducer = (state = new BaseState(), action) => {
       return {
         ...state,
         articles: [],
+        totalResults: 0,
         loading: false,
       };
     default:

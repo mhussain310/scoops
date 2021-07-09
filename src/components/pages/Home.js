@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { changePage, fetchArticles, removeArticles } from "../../actions";
+import { changePage, fetchArticles } from "../../actions";
 import PreviewTopStory from "../PreviewTopStory/PreviewTopStory";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import PreviewArticle from "../PreviewArticle/PreviewArticle";
@@ -10,22 +10,21 @@ import Error from "../Error/Error";
 
 window.scrollTo(0, 0);
 
-const Home = ({ articles, fetchArticles, changePage, removeArticles }) => {
+const Home = ({ articles, fetchArticles, changePage }) => {
   const topArticles = articles.general.articles;
-  const articlesLength = topArticles.length;
+  const totalResults = articles.general.totalResults;
   const errorMsg = articles.general.error;
 
   useEffect(() => {
-    if (articlesLength === 0) {
+    if (totalResults === 0) {
       changePage(1);
       fetchArticles();
     }
 
     return () => {
-      // removeArticles();
       changePage(1);
     };
-  }, [fetchArticles, removeArticles, changePage, articlesLength]);
+  }, [fetchArticles, changePage, totalResults]);
 
   const render = () => {
     if (errorMsg && topArticles.length === 0)
@@ -35,7 +34,7 @@ const Home = ({ articles, fetchArticles, changePage, removeArticles }) => {
       return (
         <>
           <PreviewTopStory topStory={topArticles[0]} label="breaking" />
-          <SectionTitle title="Latest News" />
+          <SectionTitle title="Latest news" />
           <PreviewArticle latestNews={topArticles.slice(1)} />
           <Pagination />
         </>
@@ -45,14 +44,6 @@ const Home = ({ articles, fetchArticles, changePage, removeArticles }) => {
   };
 
   return render(topArticles);
-  // return (
-  //   <>
-  //     <PreviewTopStory />
-  //     <SectionTitle title="Latest News" />
-  //     <PreviewArticle />
-  //     <Pagination />
-  //   </>
-  // );
 };
 
 const mapStateToProps = ({ articles }) => ({ articles });
@@ -60,5 +51,4 @@ const mapStateToProps = ({ articles }) => ({ articles });
 export default connect(mapStateToProps, {
   fetchArticles,
   changePage,
-  removeArticles,
 })(Home);

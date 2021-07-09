@@ -17,7 +17,7 @@ const PreviewArticleCard = ({
   const { ref, inView, entry } = useInView({
     root: null,
     threshold: 0,
-    // rootMargin: "0px 0px -20px 0px",
+    rootMargin: "0px 0px 20px 0px",
   });
 
   useEffect(() => {

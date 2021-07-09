@@ -18,7 +18,7 @@
 
 .error__icon-bookmark {
   font-size: 5rem;
-  fill: rgba(0, 0, 0, 0.6);
+  fill: var(--black-op60);
 }
 
 .error__msg {

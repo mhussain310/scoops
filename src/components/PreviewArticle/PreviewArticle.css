@@ -92,7 +92,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 860px) {
   .preview {
     width: calc(100% / 3 - 21px + 7px);
     margin-right: 21px;

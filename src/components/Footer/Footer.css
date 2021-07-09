@@ -16,7 +16,7 @@
 
 .footer__dev {
   margin-right: 0.3rem;
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--black-op60);
 }
 
 .footer__link {
@@ -30,8 +30,6 @@
 
 @media screen and (min-width: 960px) {
   .footer {
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
     padding: 15px 15px 15px 35px;
   }
 }

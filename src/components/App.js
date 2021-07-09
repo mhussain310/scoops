@@ -14,23 +14,25 @@ import Category from "./pages/Category";
 const App = () => {
   return (
     <Router>
-      <div className="main-container">
-        <Navbar />
-        <div className="content-wrapper">
-          <Notification />
-          <ShareModal />
-          <Switch>
-            <Route exact path="/" component={Home}></Route>
-            <Route
-              exact
-              path="/saved-articles"
-              component={SavedArticles}
-            ></Route>
-            <Route exact path="/:category" component={Category}></Route>
-            <Route exact path="/article/:name" component={Article}></Route>
-          </Switch>
+      <div className="main-wrapper">
+        <div className="main-container">
+          <Navbar />
+          <div className="content-wrapper">
+            <Notification />
+            <ShareModal />
+            <Switch>
+              <Route exact path="/" component={Home}></Route>
+              <Route
+                exact
+                path="/saved-articles"
+                component={SavedArticles}
+              ></Route>
+              <Route exact path="/:category" component={Category}></Route>
+              <Route exact path="/article/:name" component={Article}></Route>
+            </Switch>
+          </div>
+          <Footer />
         </div>
-        <Footer />
       </div>
     </Router>
   );

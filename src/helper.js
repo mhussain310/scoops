@@ -23,10 +23,11 @@ export const removeTLD = (str) => {
   return index === -1 ? str : str.slice(0, index);
 };
 
-export const removeChar = (str) => {
+export const removeUnknownChars = (str) => {
   if (!str) return;
   const index = str.lastIndexOf("[");
-  return str.slice(0, index);
+  const modifiedString = index === -1 ? str : str.slice(0, index);
+  return modifiedString.replace(/(&quot;)/g, "'");
 };
 
 export const parseISOString = (str) => {

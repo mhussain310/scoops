@@ -6,7 +6,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: var(--black-op50);
   transition: opacity 150ms ease-in-out;
   z-index: 2;
 }

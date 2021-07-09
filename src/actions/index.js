@@ -1,6 +1,6 @@
 import news from "../api/news";
 import { CATEGORY_NAMES, RES_PER_PAGE } from "../config";
-import { removeSource, removeTLD } from "../helper";
+import { removeUnknownChars, removeSource, removeTLD } from "../helper";
 
 export const fetchArticles =
   (category = CATEGORY_NAMES[0]) =>
@@ -21,6 +21,8 @@ export const fetchArticles =
         return {
           ...article,
           title: removeSource(article.title),
+          description: removeUnknownChars(article.description),
+          content: removeUnknownChars(article.content),
           source: {
             ...article.source,
             name: removeTLD(article.source.name),
@@ -53,9 +55,9 @@ export const removeArticles = () => {
 export const toggleBookmark = (article) => (dispatch, getState) => {
   const { bookmarks } = getState();
 
-  const checkBookmark = bookmarks.some((el) => el.title === article.title);
+  const isBookmarked = bookmarks.some((el) => el.title === article.title);
 
-  if (!checkBookmark) {
+  if (!isBookmarked) {
     dispatch({ type: "ADD_BOOKMARK", payload: article });
     dispatch(addNotification("Article saved!", "success"));
   } else {

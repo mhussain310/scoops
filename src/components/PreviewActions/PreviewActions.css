@@ -1,5 +1,5 @@
 .preview__actions {
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--black-op60);
   font-size: 1.8rem;
   display: flex;
   flex-wrap: wrap;
@@ -24,7 +24,7 @@
 }
 
 .preview__bookmark--empty {
-  fill: rgba(0, 0, 0, 0.6);
+  fill: var(--black-op60);
 }
 
 .dots {
@@ -45,7 +45,7 @@
   background: var(--color-white);
   list-style: none;
   border-radius: 8px;
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 10px 0 var(--black-op20);
   padding: 5px 0;
   z-index: 1;
 }
@@ -67,12 +67,12 @@
 }
 
 .dots__option:hover {
-  background: rgb(229, 229, 229);
+  background: var(--grey-shade-0);
 }
 
 .dots__link {
   text-decoration: none;
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--black-op60);
   padding: 8px 16px;
   display: flex;
   align-items: center;
@@ -83,7 +83,7 @@
 }
 
 .dots__icon {
-  fill: rgba(0, 0, 0, 0.6);
+  fill: var(--black-op60);
 }
 
 @media screen and (min-width: 540px) {

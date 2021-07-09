@@ -14,9 +14,7 @@ const ArticleHeader = ({ article, bookmarks, toggleBookmark }) => {
     <header className="article-header">
       <h1 className="article-header__title">{article.title}</h1>
       <p className="article-header__author-container">
-        <span className="article-header__author-by">
-          {article.author ? "By" : "From"}
-        </span>
+        <span className="article-header__author-by">By</span>
         <strong>{checkAuthor(article.author, article.source.name)}</strong>
       </p>
       <div className="article-header__date-container">

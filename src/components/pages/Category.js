@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { changePage, fetchArticles, removeArticles } from "../../actions";
+import { changePage, fetchArticles } from "../../actions";
 import { CATEGORY_NAMES } from "../../config";
 import { capitaliseFirstLetter } from "../../helper";
 import PreviewTopStory from "../PreviewTopStory/PreviewTopStory";
@@ -13,7 +13,7 @@ import Error from "../Error/Error";
 
 window.scrollTo(0, 0);
 
-const Category = ({ articles, fetchArticles, changePage, removeArticles }) => {
+const Category = ({ articles, fetchArticles, changePage }) => {
   const category = useParams().category;
   const topArticles = articles[category]?.articles ?? [];
   const errorMsg = articles[category]?.error ?? "";
@@ -26,10 +26,9 @@ const Category = ({ articles, fetchArticles, changePage, removeArticles }) => {
     }
 
     return () => {
-      // removeArticles();
       changePage(1);
     };
-  }, [fetchArticles, removeArticles, changePage, articlesLength, category]);
+  }, [fetchArticles, changePage, articlesLength, category]);
 
   const render = () => {
     if (!CATEGORY_NAMES.includes(category)) return <Redirect to="/" />;
@@ -41,7 +40,7 @@ const Category = ({ articles, fetchArticles, changePage, removeArticles }) => {
       return (
         <>
           <PreviewTopStory topStory={topArticles[0]} label="trending" />
-          <SectionTitle title={`${capitaliseFirstLetter(category)} News`} />
+          <SectionTitle title={`${capitaliseFirstLetter(category)} news`} />
           <PreviewArticle latestNews={topArticles.slice(1)} />
           <Pagination />
         </>
@@ -58,5 +57,4 @@ const mapStateToProps = ({ articles }) => ({ articles });
 export default connect(mapStateToProps, {
   fetchArticles,
   changePage,
-  removeArticles,
 })(Category);

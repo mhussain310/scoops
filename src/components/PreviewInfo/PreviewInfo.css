@@ -3,7 +3,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   font-size: 1.4rem;
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--black-op60);
   padding-top: 10px;
   order: 4;
 }
@@ -21,6 +21,6 @@
 
 .article-info__source-icon,
 .article-info__date-icon {
-  fill: rgba(0, 0, 0, 0.6);
+  fill: var(--black-op60);
   margin-right: 4px;
 }
