@@ -10,11 +10,11 @@ const Footer = () => {
         <span className="footer__dev">Developed by</span>
         <Link
           className="footer__link"
-          to={{ pathname: "https://github.com/AH10Coding" }}
+          to={{ pathname: "https://github.com/mhussain310" }}
           target="_blank"
           rel="noreferrer"
         >
-          AH10Coding
+          mhussain310
         </Link>
       </div>
     </footer>

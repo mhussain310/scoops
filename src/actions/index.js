@@ -14,7 +14,7 @@ export const fetchArticles =
       const { page } = getState();
 
       const res = await news(
-        `top-headlines?country=gb&category=${category}&pageSize=${RES_PER_PAGE}&page=${page}`
+        `top-headlines?country=us&category=${category}&pageSize=${RES_PER_PAGE}&page=${page}`
       );
 
       const articles = res.articles.map((article) => {
