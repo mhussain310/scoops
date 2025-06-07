@@ -1,0 +1,35 @@
+.footer {
+  width: 100%;
+  height: 48px;
+  background: var(--color-white);
+  box-shadow: 0 2px 15px 1px rgba(64, 60, 67, 0.16);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  position: relative;
+}
+
+.footer__content {
+  font-size: 1.4rem;
+}
+
+.footer__dev {
+  margin-right: 0.3rem;
+  color: var(--black-op60);
+}
+
+.footer__link {
+  color: var(--color-medium-grey);
+  text-decoration: none;
+}
+
+.footer__link:hover {
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 960px) {
+  .footer {
+    padding: 15px 15px 15px 35px;
+  }
+}

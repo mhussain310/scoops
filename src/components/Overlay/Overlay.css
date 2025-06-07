@@ -1,0 +1,31 @@
+.overlay {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--black-op50);
+  transition: opacity 150ms ease-in-out;
+  z-index: 2;
+}
+
+.overlay--active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.overlay--modal {
+  z-index: 3;
+}
+
+@media screen and (min-width: 960px) {
+  .overlay {
+    display: none;
+  }
+
+  .overlay--modal {
+    display: initial;
+  }
+}

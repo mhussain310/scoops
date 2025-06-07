@@ -1,0 +1,110 @@
+.top-story {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 2px 5px 1px rgba(64, 60, 67, 0.16);
+  /* overflow: hidden; */
+  border-radius: 15px;
+  background: var(--color-white);
+  background: -webkit-linear-gradient(to right, #eaeaea, #f2f2f2);
+  background: linear-gradient(to right, #eaeaea, #f2f2f2);
+}
+
+.top-story__image-container {
+  text-decoration: none;
+  width: 100%;
+}
+
+.top-story:hover .article-image__img {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 350ms ease-out;
+}
+
+.top-story:hover .top-story__title {
+  cursor: pointer;
+  text-decoration: underline;
+  transition: transform 350ms ease-out;
+}
+
+.top-story__label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  background: var(--color-red);
+  color: var(--color-white);
+  padding: 4px 8px 4px 10px;
+  transform: skewX(349deg) translateX(-4px);
+  z-index: 1;
+}
+
+.top-story__content {
+  color: var(--color-medium-grey);
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.top-story__content-wrapper {
+  /* order: 3; */
+  order: 0;
+}
+
+.top-story__title-container {
+  text-decoration: none;
+  color: var(--color-medium-grey);
+  font-weight: bold;
+}
+
+.top-story__title {
+  font-size: 2rem;
+  padding-bottom: 10px;
+}
+
+.top-story__content-description {
+  display: none;
+}
+
+@media screen and (min-width: 540px) {
+  .top-story {
+    flex-direction: row;
+    border-radius: 0;
+  }
+
+  .top-story__image-container {
+    width: 50%;
+  }
+
+  .top-story__content {
+    width: 50%;
+    padding: 15px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .top-story__label {
+    font-size: 2.6rem;
+  }
+
+  .top-story__content-wrapper {
+    padding-bottom: 10px;
+  }
+
+  .top-story__title {
+    font-size: 2.4rem;
+  }
+
+  .top-story__content-description {
+    display: initial;
+    font-size: 1.6rem;
+  }
+}

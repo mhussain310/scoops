@@ -1,0 +1,16 @@
+.section-title {
+  color: var(--color-medium-grey);
+  padding: 60px 0 10px 10px;
+  font-size: 2.2rem;
+  border-bottom: 1px solid rgba(204, 204, 204, 1);
+}
+
+.section-title--pad-top-short {
+  padding: 20px 0 10px 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .section-title {
+    font-size: 3.2rem;
+  }
+}

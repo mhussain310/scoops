@@ -1,0 +1,21 @@
+.article-text__wrapper {
+  max-width: 700px;
+  margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+
+.article-text__container {
+  color: var(--color-medium-grey);
+  overflow-wrap: break-word;
+  font-size: 1.6rem;
+}
+
+.article-text__container--bold {
+  font-weight: bold;
+}
+
+@media screen and (min-width: 540px) {
+  .article-text__wrapper {
+    padding: 0 10px;
+  }
+}
